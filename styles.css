@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
+
+/* Aquí definimos los Custom properties */
+:root {
+    --negro: #393939;
+    --tipo-principal: Helvetica, Arial, sans-serif;
+    --tipo-secundario: Verdana;
+}
+
+/* Las adaptamos al modo oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --negro: #ececec;
+    }
+}
+
+/*Opcional*/
+/*Desactivamos los animations en el caso de que el usuario haya configura el modo sin animations o transitions */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        /*ha puesto el * pero debería ser el elemento específico */
+        -webkit-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        transition: none !important;
+    }
+}
+
+/* Reseteamos los margin y paddings de todas las etiquetas */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    /*si añado pequeñas imagenes en el texto, sirve para resolver pequeños problemas
+    y alineaciones que suelen tener esos textos e imágenes */
+}
+
+/* Evitamos problemas con las imagenes */
+img,
+picture,
+video,
+iframe,
+figure {
+    max-width: 100%;
+    /* (evita problemas de desbordamientos) */
+    width: 100%;
+    /* con esto, las imagenes pequeñas se adaptarán al ancho del contenedor */
+    display: block;
+    /*evita el problema de espacio que existe entre una imag y otra */
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center center;
+    object-position: center center;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas... */
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+/* ... excepto los que se encuentran en párrafos */
+p a {
+    display: inline;
+}
+
+/* Quitamos los puntos de los <li> */
+li {
+    list-style-type: none;
+}
+
+/* Configuramos anclas suaves */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+blockquote,
+i,
+b,
+u,
+em {
+    font-size: 1em;
+    /*la tipografía se adaptará al tamaño de la etiq. del body */
+    font-weight: inherit;
+    /* hedarán el weight*/
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+    /*para configurar el color de todo el txt desde una etiqueta contenedor*/
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+/* Configuramos el color del texto que seleccionamos (en base a las custom properties que tengo más arriba*/
+::-moz-selection {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form,
+input,
+textarea,
+select,
+button,
+label {
+    font-family: inherit;
+    font-size: inherit;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    background-color: transparent;
+    display: block;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Reseteamos las tablas así la tabla está perfectamente pegada*/
+table,
+tr,
+td {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+    width: 100%;
+    display: block;
+    /*por default viene inline-block y deja pequeños espacios*/
+    fill: currentColor;
+    /*para que cuando use la propiedad fill funcione ok*/
+}
+
+/* configuramos la tipografía para toda la web */
+body {
+    min-height: 100vh;
+    font-size: 100%;
+    font-family: var(--tipo-principal);
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* estos últimos tres, sirven para que en los Mac la tipog. se vea más definida */
+
+}
+
+/* Mi código */
+.header {
+    width: 100%;
+    height: 11vh;
+    background-color: #282828;
+    padding: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: fixed;
+    font-size: 1.2em;
+    z-index: 10;
+    letter-spacing: .05em;
+
+}
+
+.header .h1 span {
+    color: rgb(252, 173, 62);
+
+}
+
+.header .a {}
+
+.header .button {
+    display: none;
+    cursor: pointer;
+}
+
+.header .svg {
+    width: 2em;
+    height: 2em;
+    fill: white;
+}
+
+.header .nav {
+    /* background-color: bisque; */
+}
+
+.header .ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header .li {
+    margin: 0 1em;
+    font-size: 0.9em;
+    letter-spacing: .05em;
+}
+
+.header .li:hover {
+    color: rgb(252, 173, 62);
+    border-bottom: .2px solid rgb(252, 173, 62);
+}
+
+.header .li:target {
+    color: rgb(252, 173, 62);
+    border-bottom: .2px solid rgb(252, 173, 62);
+}
+
+section#inicio {
+    width: 100%;
+    /* background-color: rgb(144, 0, 255); */
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    padding-top: 3em;
+    background-image: url("img//005.jpg");
+    background-size:100% 115%;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    justify-content: center;
+}
+
+div.presentation {
+    width: auto;
+    color: white;
+    margin: auto 0;
+    font-family: 'Griffy';
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+h1.nombre {
+    background-color: rgba(8, 36, 63, 0.7);
+    font-size: 5.6em;
+    font-weight: 400;
+    padding: 0.1em;
+
+}
+
+h2.developer {
+    color: rgb(252, 173, 62);
+    font-size: 2.6em;
+    font-weight: 500;
+    letter-spacing: .1em;
+    background-color: rgba(8, 36, 63, 0.7);
+    padding: .2em
+
+}
+
+div.socials {
+    position: absolute;
+    /* background-color: crimson; */
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+}
+
+.link-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.link {
+    width: 38px;
+    height: 38px;
+    fill: rgb(255, 255, 255);
+    border-radius: 15%;
+    /* border: 1px solid rgb(255, 255, 255); */
+    margin: .35em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-link {
+    display: flex;
+    width: 1.2rem;
+    height: 1.2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    pointer-events: none;
+    width: 80%;
+    height: 80%;
+    fill: white;
+
+}
+
+#about {
+    width: 100%;
+    height: 100vh;
+    /* background-color: rgb(250, 239, 222);
+    background: rgb(241,237,152); */
+    background: radial-gradient(circle, rgba(241,237,152,1) 0%, rgba(251,186,81,1) 100%);
+    line-height: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+}
+
+div.text-about {
+    width: 50%;
+    padding: 5em 0em 1em 12em;
+}
+
+.title {
+    font-family: 'Griffy';
+    font-size: 3.6em;
+    font-weight: 600;
+    color:rgb(103, 5, 133);
+    margin: 1em 0 .8em 0;
+    letter-spacing: 0.02em;
+}
+
+.text {
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about img {
+    width: 20em;
+    height: 20em;
+    background-image: url("img/007.jpg");
+    background-size: 155% 110%;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-right: 12em
+}
+
+#portfolio {
+    width: 100%;
+    height: auto;
+    background-image: url("img/nebulosa.png");
+    filter:opacity(100%);
+    text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
+
+}
+#portfolio h1{
+    color: white;    
+    font-family: 'Griffy';
+    font-size: 3.6em;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    padding-top: .8em;
+}
+
+#portfolio:first-child{
+    font-size: 5em;
+    color: white;
+}
+
+.container {
+    /* background-color: rgb(62, 252, 62); */
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap;
+}
+.articulo{
+    width: 26%;
+    height: 22em;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.articulo:hover{
+    transform: scale(120%);
+}
+.articulo-large{
+    width: auto; 
+    height: 18em
+}
+article h3{
+    text-align: center;
+    margin: 1em auto;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1em;
+    background-color: black;
+    padding: .15em;
+}
+article img{
+    width: 90%;
+    height: 100%;
+    /* background-color:rgb(26, 5, 36); */
+    border: 1px solid rgb(245, 243, 243); 
+    padding: .5em;
+}
+
+#skills {
+    width: 100%;
+    height: auto;
+    background: radial-gradient(circle, rgb(208, 152, 241) 0%, rgb(105, 36, 107)100%);
+    padding: 5em;
+    text-align: center;
+}
+#skills h1{
+    color: white;
+    font-family: 'Griffy';
+    font-size: 3.6em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-top:.1em
+}
+.caja-skill{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center; 
+    padding: 3em
+    
+}
+.caja-skill img{
+    width: 100%;
+    height: 200px;
+    
+}
+footer{
+    background-color:#282828;
+    padding: 1em;
+    color: white;
+    text-align: center;
+    font-size: 0.9em;
+}
+@media screen and (max-width: 480px) {
+    .header .button {
+        display: block;
+        cursor: pointer;
+    }
+
+    .header .nav {
+        width: 100%;
+        /*para que cuando sea mobile el menú baje*/
+        /* display: none; */
+        height: 0;
+        pointer-events: none;
+        overflow: hidden;
+        transition: all .9s ease;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header .nav.activo {
+        /* display: block; */
+        height: 50vh;
+        pointer-events: auto;
+    }
+
+    .header .ul {
+        flex-direction: column;
+    }
+
+    .header .li {
+        margin: 1rem 0;
+    }
+
+    div.presentation {
+        padding: 3em 1em;
+    }
+    
+    h1.nombre {
+        font-size: 3.6em;
+        padding: 0.2em;
+    }
+
+    h2.developer {
+        font-size: 1.8em;
+    }
+
+    div.imagen {
+        width: 100%;
+    }
+
+    /* Acerca de Mi */
+    div.text-about {
+        width: 100%;
+        /* padding: 5em 0em 1em 12em; */
+    }
+    .about img{
+        width: 100%;
+        height: auto;
+    }
+}
